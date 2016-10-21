@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample;
+package com.pong;
 
-import com.pongsample.entity.Player;
+import com.pong.entity.Player;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -13,13 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import com.pongsample.entity.Ball;
+import com.pong.entity.Ball;
 
 /**
  *
  * @author User
  */
-public class PongSample extends Application {
+public class Pong extends Application {
     
     private Scene scene;
     

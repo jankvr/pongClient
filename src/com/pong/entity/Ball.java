@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample.entity;
+package com.pong.entity;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
-import com.pongsample.PongSample;
-import com.pongsample.Sprite;
+import com.pong.Pong;
+import com.pong.Sprite;
 
 /**
  *
@@ -20,13 +20,13 @@ import com.pongsample.Sprite;
 public class Ball extends Entity {
     
     public double directionX, directionY;
-    private final PongSample ps;
+    private final Pong ps;
     
     private boolean canMove;
     
     private static final int SPEED = 2;
     
-    public Ball(Sprite sprite, int x, int y, PongSample ps) {
+    public Ball(Sprite sprite, int x, int y, Pong ps) {
         super(sprite, x, y, ps);
         this.ps = ps;
         this.canMove = true;
@@ -82,11 +82,11 @@ public class Ball extends Entity {
         if (super.position.y < 0) {
             this.directionY *= -1;
         }
-        else if ((super.position.y + this.getSprite().getImage().getWidth()) > PongSample.MAP_HEIGHT) {
+        else if ((super.position.y + this.getSprite().getImage().getWidth()) > Pong.MAP_HEIGHT) {
             this.directionY *= -1; 
         }
         // toto je jen kolize s pravou stranou, od te se nebude odrazet
-        else if ((super.position.x + this.getSprite().getImage().getHeight()) > PongSample.MAP_WIDTH) {
+        else if ((super.position.x + this.getSprite().getImage().getHeight()) > Pong.MAP_WIDTH) {
             this.directionX *= -1;
 //            System.out.println("bod pro leveho");
 //            this.canMove = false;

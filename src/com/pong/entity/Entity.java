@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample.entity;
+package com.pong.entity;
 
-import com.pongsample.PongSample;
-import com.pongsample.Sprite;
+import com.pong.Pong;
+import com.pong.Sprite;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Entity {
 
     protected Sprite sprite;
     protected boolean cantMoveRight, cantMoveLeft, cantMoveUp, cantMoveDown;    
-    private final PongSample ps;
+    private final Pong ps;
     
     /**
      * Constructor for entity. 
@@ -34,9 +34,9 @@ public class Entity {
      * @param y sets entity position on y-axis
      * @param ps
      */
-    public Entity(Sprite sprite, double x, double y, PongSample ps) {
-        this.windowWidth = PongSample.MAP_WIDTH;
-        this.windowHeight = PongSample.MAP_WIDTH;
+    public Entity(Sprite sprite, double x, double y, Pong ps) {
+        this.windowWidth = Pong.MAP_WIDTH;
+        this.windowHeight = Pong.MAP_WIDTH;
         this.ps = ps;
         this.sprite = sprite;
         this.sprite.setXY(x, y);

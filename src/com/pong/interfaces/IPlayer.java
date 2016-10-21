@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample.interfaces;
+package com.pong.interfaces;
 
 /**
  *
  * @author User
  */
-public interface IDriver {
-    public void update();
+public interface IPlayer {
     
-    public boolean isUp();
+    public void movement();
     
-    public boolean isDown();
+    public void render();
 }

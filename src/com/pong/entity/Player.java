@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample.entity;
+package com.pong.entity;
 
 
-import com.pongsample.interfaces.IPlayer;
+import com.pong.interfaces.IPlayer;
 import javafx.scene.canvas.GraphicsContext;
-import com.pongsample.PongSample;
-import com.pongsample.Sprite;
-import com.pongsample.input.Kb;
+import com.pong.Pong;
+import com.pong.Sprite;
+import com.pong.input.Kb;
 
 /**
  *
@@ -33,7 +33,7 @@ public class Player extends Entity implements IPlayer {
      * @param y     current position on y-axis
      * @param ps
      */
-    public Player(double x, double y, PongSample ps) {
+    public Player(double x, double y, Pong ps) {
         super(POD, x, y, ps);
         this.cantMoveUp = false;
         this.cantMoveDown = false;

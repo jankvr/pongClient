@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pongsample.input;
+package com.pong.input;
     
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.input.KeyEvent;
-import com.pongsample.PongSample;
+import com.pong.Pong;
 
 /**
  *
@@ -19,9 +19,9 @@ public class Kb {
     
     private boolean up, down;
     private final Map<String, Boolean> map;
-    private final PongSample gui;
+    private final Pong gui;
     
-    public Kb(PongSample gui) {
+    public Kb(Pong gui) {
         this.gui = gui;
         map = new HashMap<>();
         map.put("UP", false);
