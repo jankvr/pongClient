@@ -88,4 +88,9 @@ public class Player extends Entity implements IPlayer {
         this.sprite.render(gc);
     }
     
+    @Override
+    public String currentLocation() {
+        return "PADDLEPOSITION " + this.position.y;
+    }
+    
 }

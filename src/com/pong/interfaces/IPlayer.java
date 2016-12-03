@@ -14,4 +14,6 @@ public interface IPlayer {
     public void movement();
     
     public void render();
+    
+    public String currentLocation();
 }
