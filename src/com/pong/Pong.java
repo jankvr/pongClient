@@ -14,6 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import com.pong.entity.Ball;
+import com.pong.entity.Opponent;
 import javafx.application.Platform;
 import javafx.stage.WindowEvent;
 
@@ -37,6 +38,8 @@ public class Pong extends Application {
     private Sprite background;
     private Group root;
     private Client client;
+    
+    private Opponent opponent;
 
     public Player getPlayer() {
         return player;
