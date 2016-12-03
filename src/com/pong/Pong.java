@@ -58,31 +58,40 @@ public class Pong extends Application {
     public void start(Stage stage) {
         
         client = new Client("127.0.0.1", 5000, this);
+                
         
-        stage.setTitle("PongSample");
+        stage.setTitle("PongClient");
 
         init(stage);
 
         long startNanoTime = System.nanoTime();
         final long lastNanoTime = startNanoTime;        
-        
+ 
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 
-                background.render(gc);
-                
-                player.render();
-                ball.render(gc);
-                
-                player.movement();
+                if (client.isStarted()) {
+                    background.render(gc);
+
+                    player.render();
+
+                    ball.render(gc);
+
+                    player.movement();
+
+                    client.processMessage(player.currentLocation());
+                }
             }
         }.start();
         
         stage.show();
         
         stage.setOnCloseRequest((WindowEvent e) -> {
+            if (client.isAlive()) {
+                client.sendQuitMessage();
+            }
             Platform.exit();
             System.exit(0);
         });
