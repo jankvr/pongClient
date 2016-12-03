@@ -29,7 +29,6 @@ public class Score {
     public void setRec2(int rec2) {
         this.rec2 = rec2;
     }
-
-    
+   
     
 }
