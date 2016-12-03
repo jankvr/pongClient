@@ -38,11 +38,16 @@ public class Pong extends Application {
     private Sprite background;
     private Group root;
     private Client client;
+    private Score score;
     
     private Opponent opponent;
 
     public Player getPlayer() {
         return player;
+    }
+    
+    public Opponent getOpponent() {
+        return opponent;
     }
 
     public Ball getBall() {
@@ -76,10 +81,13 @@ public class Pong extends Application {
                 double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 
                 if (client.isStarted()) {
+
                     background.render(gc);
 
                     player.render();
-
+                        
+                    opponent.render();
+                    
                     ball.render(gc);
 
                     player.movement();
@@ -114,6 +122,10 @@ public class Pong extends Application {
         
         player = new Player(20, 20, this);
         player.setMapSize(MAP_WIDTH, MAP_HEIGHT);
+        
+        opponent = new Opponent(20, 120, this);
+        opponent.setMapSize(MAP_WIDTH, MAP_HEIGHT);
+        
         ball = new Ball(ballSprite, 400, 200, this);
         
         root.getChildren().add(canvas);
@@ -124,6 +136,14 @@ public class Pong extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
     
     

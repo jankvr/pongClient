@@ -93,4 +93,8 @@ public class Player extends Entity implements IPlayer {
         return "PADDLEPOSITION " + this.position.y;
     }
     
+    @Override
+    public void setY(double y) {
+        this.position.y = y;
+    }
 }

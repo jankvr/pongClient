@@ -30,9 +30,24 @@ public class CmdParser {
             game.getBall().setxPosition(x);
             game.getBall().setyPosition(y);
         }
-//        else if(tokens[0]=="OPPONENTPOSITION"){
-//            game.g
-//        }
+        else if(tokens[0]=="OPPONENTPOSITION"){
+            game.getOpponent().setY(Double.parseDouble(tokens[1]));
+        }
+        else if(tokens[0]=="SCORE"){
+            game.getScore().setRec1(Integer.parseInt(tokens[1]));
+            game.getScore().setRec2(Integer.parseInt(tokens[2]));
+        }
+        else if(tokens[0]=="ERROR"){
+            System.out.print("Server informuje o chybe: ");
+            for(int i=1;i<tokens.length;i++){
+                System.out.print(tokens[i]+" ");
+            }
+            System.out.println();
+        }
+        else{
+            System.out.println("nesprávny reťazec poslaný na CmdParser");
+        }
+        
         
     }
     
