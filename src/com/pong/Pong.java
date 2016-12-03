@@ -14,6 +14,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import com.pong.entity.Ball;
+import javafx.application.Platform;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -34,6 +36,7 @@ public class Pong extends Application {
     private GraphicsContext gc;
     private Sprite background;
     private Group root;
+    private Client client;
 
     public Player getPlayer() {
         return player;
@@ -53,6 +56,9 @@ public class Pong extends Application {
     
     @Override
     public void start(Stage stage) {
+        
+        client = new Client("127.0.0.1", 5000, this);
+        
         stage.setTitle("PongSample");
 
         init(stage);
@@ -75,6 +81,11 @@ public class Pong extends Application {
         }.start();
         
         stage.show();
+        
+        stage.setOnCloseRequest((WindowEvent e) -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     private void init(Stage stage) {
