@@ -99,6 +99,7 @@ public class Pong extends Application {
         gc.scale(SCALE, SCALE);
         background = new Sprite("images/background.png");
         Sprite ballSprite = new Sprite("images/ball.png");
+        
         player = new Player(20, 20, this);
         player.setMapSize(MAP_WIDTH, MAP_HEIGHT);
         ball = new Ball(ballSprite, 400, 200, this);

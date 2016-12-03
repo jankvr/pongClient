@@ -17,9 +17,11 @@ import java.net.Socket;
 public class Client implements Runnable {
     
     private Socket socket;
-    public DataInputStream inputStream;
-    public DataOutputStream outputStream;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
     private final Pong gui;
+    
+    private boolean alive = false;
     
     
     // Set up the screen
@@ -34,6 +36,8 @@ public class Client implements Runnable {
             
             //message
             System.out.println("Connection established");
+            
+            alive = true;
             
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
@@ -59,16 +63,26 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
-            outputStream.writeUTF("PONG");
+            //outputStream.writeUTF("PONG");
             while (true) {
-                
+                //System.out.println("reading");
                 String message = inputStream.readUTF();
-
+                if (message != null) {
+                    System.out.println("Message from server: " + message);
+                }
+                
+                
             }
         } 
         catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     } 
     
+    public boolean isAlive() {
+        return alive;
+    }
 }
