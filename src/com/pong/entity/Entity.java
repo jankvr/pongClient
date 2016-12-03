@@ -22,7 +22,7 @@ public class Entity {
 
     protected Sprite sprite;
     protected boolean cantMoveRight, cantMoveLeft, cantMoveUp, cantMoveDown;    
-    private final Pong ps;
+    protected final Pong main;
     
     /**
      * Constructor for entity. 
@@ -32,12 +32,12 @@ public class Entity {
      * @param sprite
      * @param x sets entity position on x-axis
      * @param y sets entity position on y-axis
-     * @param ps
+     * @param main
      */
-    public Entity(Sprite sprite, double x, double y, Pong ps) {
+    public Entity(Sprite sprite, double x, double y, Pong main) {
         this.windowWidth = Pong.MAP_WIDTH;
         this.windowHeight = Pong.MAP_WIDTH;
-        this.ps = ps;
+        this.main = main;
         this.sprite = sprite;
         this.sprite.setXY(x, y);
         int entityHeight = (int) this.sprite.getImage().getHeight();

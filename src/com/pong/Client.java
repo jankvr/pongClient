@@ -81,6 +81,12 @@ public class Client implements Runnable {
                 if (message.equals(Static.START_CMD)) {
                     this.started = true;
                 }
+                else if (message.equals("LEFT") || message.equals("RIGHT")) {
+                    
+                }
+                
+                System.out.println(message);
+                
             }
         } 
         catch (IOException e) {
