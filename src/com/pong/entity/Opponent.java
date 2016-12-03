@@ -14,9 +14,17 @@ import com.pong.interfaces.IPlayer;
  * @author User
  */
 public class Opponent extends Entity implements IPlayer {
-
+    private double yPosition;
     public Opponent(Sprite sprite, double x, double y, Pong ps) {
         super(sprite, x, y, ps);
+    }
+
+    public double getyPosition() {
+        return yPosition;
+    }
+
+    public void setyPosition(double yPosition) {
+        this.yPosition = yPosition;
     }
 
     @Override
