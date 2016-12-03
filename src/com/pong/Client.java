@@ -78,15 +78,21 @@ public class Client implements Runnable {
             while (true) {
                 String message = inputStream.readUTF();
                 
+                System.out.println("Prijato: " + message);
+                
                 if (message.equals(Static.START_CMD)) {
                     this.started = true;
                 }
-                else if (message.equals("LEFT") || message.equals("RIGHT")) {
-                    
+                
+                if (message.equals("LEFT")) {
+                    this.gui.getPlayer().setX(Static.LEFT_POS);
+                    this.gui.getOpponent().setX(Static.RIGHT_POS);
                 }
-                
-                System.out.println(message);
-                
+                if (message.equals("RIGHT")) {
+                    this.gui.getPlayer().setX(Static.RIGHT_POS);
+                    this.gui.getOpponent().setX(Static.LEFT_POS);
+                }
+
             }
         } 
         catch (IOException e) {

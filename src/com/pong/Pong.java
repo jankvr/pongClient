@@ -29,7 +29,7 @@ public class Pong extends Application {
     private Player player;
     private Ball ball;
     
-    private static final int WIDTH = 640; 
+    private static final int WIDTH = 800; 
     private static final int HEIGHT = WIDTH/4*3;
     private static final double SCALE = 1;
     public static final int MAP_WIDTH = WIDTH;
@@ -86,7 +86,7 @@ public class Pong extends Application {
                     player.render();
                         
                     opponent.render();
-                    
+                    System.out.println("opX: " + opponent.getPosition().x);
                     ball.render(gc);
 
                     player.movement();

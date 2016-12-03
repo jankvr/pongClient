@@ -84,7 +84,8 @@ public class Opponent extends Entity implements IPlayer {
     }
     
     @Override
-    public void setY(double y) {
-        this.position.y = y;
+    public void setX(double x) {
+        this.position.x = x;
+        this.sprite.setXY(position.x, position.y);
     }
 }
