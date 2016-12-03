@@ -38,6 +38,7 @@ public class Pong extends Application {
     private Sprite background;
     private Group root;
     private Client client;
+    private Score score;
     
     private Opponent opponent;
 
@@ -135,6 +136,14 @@ public class Pong extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
     
     

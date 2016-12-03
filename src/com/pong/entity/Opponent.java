@@ -22,6 +22,7 @@ public class Opponent extends Entity implements IPlayer {
     private final int speed;
     private final GraphicsContext gc;
     //private final Kb kb;
+    private double yPosition;
 
     private static final int SPEED = 5;
     
@@ -38,7 +39,7 @@ public class Opponent extends Entity implements IPlayer {
         this.speed = SPEED;
         this.gc = ps.getGc();
         //this.kb = new Kb(ps);
-    }
+        }
     
     /**
      * Method considering movement. 
@@ -87,5 +88,13 @@ public class Opponent extends Entity implements IPlayer {
     public void setX(double x) {
         this.position.x = x;
         this.sprite.setXY(position.x, position.y);
+    }
+    
+    public double getyPosition() {
+        return yPosition;
+    }
+
+    public void setyPosition(double yPosition) {
+        this.yPosition = yPosition;
     }
 }

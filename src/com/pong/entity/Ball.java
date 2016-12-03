@@ -26,6 +26,9 @@ public class Ball extends Entity {
     
     private static final int SPEED = 2;
     
+    private double xPosition;
+    private double yPosition;
+    
     public Ball(Sprite sprite, int x, int y, Pong ps) {
         super(sprite, x, y, ps);
         this.ps = ps;
@@ -34,6 +37,22 @@ public class Ball extends Entity {
         // random direction
         this.directionX = -1;
         this.directionY = -1 * (Math.random());
+    }
+
+    public double getxPosition() {
+        return xPosition;
+    }
+
+    public void setxPosition(double xPosition) {
+        this.xPosition = xPosition;
+    }
+
+    public double getyPosition() {
+        return yPosition;
+    }
+
+    public void setyPosition(double yPosition) {
+        this.yPosition = yPosition;
     }
 
     
@@ -104,6 +123,10 @@ public class Ball extends Entity {
         this.position.y = this.position.y + (this.directionY * SPEED);
         this.sprite.setXY(position.x, position.y);
         
+        
+    }
+    
+    public void setX(double x){
         
     }
     
