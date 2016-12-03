@@ -68,10 +68,12 @@ public class Pong extends Application {
         client = new Client("127.0.0.1", 5000, this);
                 
         
-        stage.setTitle("PongClient");
+        
 
         init(stage);
 
+        stage.setTitle("PongClient");
+        
         long startNanoTime = System.nanoTime();
         final long lastNanoTime = startNanoTime;        
  
@@ -87,12 +89,15 @@ public class Pong extends Application {
                     player.render();
                         
                     opponent.render();
-                    System.out.println("opX: " + opponent.getPosition().x);
+
                     ball.render(gc);
 
                     player.movement();
-
-                    client.processMessage(player.currentLocation());
+                    
+                    //if (elapsed > 0.1)
+                        client.processMessage(player.currentLocation());
+                    
+                        
                 }
             }
         }.start();
@@ -120,7 +125,7 @@ public class Pong extends Application {
         background = new Sprite("images/background.png");
         Sprite ballSprite = new Sprite("images/ball.png");
         
-        player = new Player(20, 20, this);
+        player = new Player(20, 120, this);
         player.setMapSize(MAP_WIDTH, MAP_HEIGHT);
         
         opponent = new Opponent(20, 120, this);

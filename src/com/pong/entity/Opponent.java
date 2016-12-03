@@ -40,29 +40,6 @@ public class Opponent extends Entity implements IPlayer {
         this.gc = ps.getGc();
         //this.kb = new Kb(ps);
         }
-    
-    /**
-     * Method considering movement. 
-     * And setting a direction
-     */
-    private void moveUp() {
-        if (this.position.y > 0) {
-            this.position.y = this.position.y - (speed * 1);
-            this.sprite.setXY(position.x, position.y);
-        }
-        
-    }
-    
-    /**
-     * Method considering movement. 
-     * And setting a direction
-     */
-    private void moveDown() {
-        if ((this.position.y + this.sprite.getImage().getHeight()) < super.height) {
-            this.position.y = this.position.y + (speed * 1);
-            this.sprite.setXY(position.x, position.y);
-        }
-    }
 
     /**
      * Movement method considering all possible obstacles.
@@ -90,11 +67,18 @@ public class Opponent extends Entity implements IPlayer {
         this.sprite.setXY(position.x, position.y);
     }
     
+    @Override
+    public void setY(double y) {
+        this.position.y = y;
+        this.sprite.setXY(position.x, position.y);
+    }
+    
     public double getyPosition() {
         return yPosition;
     }
 
     public void setyPosition(double yPosition) {
         this.yPosition = yPosition;
+        this.sprite.setXY(position.x, position.y);
     }
 }

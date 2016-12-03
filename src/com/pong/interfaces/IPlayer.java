@@ -18,4 +18,6 @@ public interface IPlayer {
     public String currentLocation();
     
     public void setX(double x);
+    
+    public void setY(double y);
 }

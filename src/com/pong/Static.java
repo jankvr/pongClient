@@ -14,7 +14,7 @@ public class Static {
     public static final String START_CMD = "START";
     public static final String QUIT_CMD = "QUIT";
     
-    public static final double RIGHT_POS = 780;
+    public static final double RIGHT_POS = 760;
     public static final double LEFT_POS = 20;
     
 }

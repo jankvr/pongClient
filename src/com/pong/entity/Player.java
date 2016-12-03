@@ -90,11 +90,18 @@ public class Player extends Entity implements IPlayer {
     
     @Override
     public String currentLocation() {
-        return "PADDLEPOSITION " + this.position.y;
+        return "OPPONENTPOSITION " + this.position.y;
     }
     
     @Override
     public void setX(double x) {
         this.position.x = x;
+        this.sprite.setXY(position.x, position.y);
+    }
+    
+    @Override
+    public void setY(double y) {
+        this.position.y = y;
+        this.sprite.setXY(position.x, position.y);
     }
 }
