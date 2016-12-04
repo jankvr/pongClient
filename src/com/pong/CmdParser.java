@@ -34,7 +34,8 @@ public class CmdParser {
                     break;
                     
                 case "OPPONENTPOSITION":
-                    this.game.getOpponent().setY(Double.parseDouble(tokens[1]));
+                    this.game.getOpponent().setX(Double.parseDouble(tokens[1]));
+                    this.game.getOpponent().setY(Double.parseDouble(tokens[2]));
                     break;
                     
                 case "SCORE":

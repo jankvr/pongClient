@@ -90,7 +90,7 @@ public class Player extends Entity implements IPlayer {
     
     @Override
     public String currentLocation() {
-        return "OPPONENTPOSITION " + this.position.y;
+        return "OPPONENTPOSITION " + this.position.x + " " + this.position.y;
     }
     
     @Override
