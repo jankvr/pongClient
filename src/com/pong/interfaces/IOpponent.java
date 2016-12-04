@@ -9,9 +9,7 @@ package com.pong.interfaces;
  *
  * @author User
  */
-public interface IPlayer {
-
-    public void movement();
+public interface IOpponent {
     
     public void setMapSize(int width, int height);
     
@@ -22,5 +20,4 @@ public interface IPlayer {
     public void setX(double x);
     
     public void setY(double y);
-
 }

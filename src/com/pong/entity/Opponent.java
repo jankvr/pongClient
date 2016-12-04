@@ -5,51 +5,32 @@
  */
 package com.pong.entity;
 
-import com.pong.Pong;
+import com.pong.Main;
 import com.pong.Sprite;
-import com.pong.input.Kb;
-import com.pong.interfaces.IPlayer;
+import com.pong.interfaces.IOpponent;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author User
  */
-public class Opponent extends Entity implements IPlayer {
+public class Opponent extends Entity implements IOpponent {
 
     private static final Sprite POD = new Sprite("images/pod.png");
-    
-    private final int speed;
     private final GraphicsContext gc;
-    //private final Kb kb;
-    private double yPosition;
-
-    private static final int SPEED = 5;
     
     /**
      * Constructor.
      * @param x     current position on x-axis
      * @param y     current position on y-axis
-     * @param ps
+     * @param game
      */
-    public Opponent(double x, double y, Pong ps) {
-        super(POD, x, y, ps);
+    public Opponent(double x, double y, Main game) {
+        super(POD, x, y, game);
         this.cantMoveUp = false;
         this.cantMoveDown = false;
-        this.speed = SPEED;
-        this.gc = ps.getGc();
-        //this.kb = new Kb(ps);
+        this.gc = game.getGc();
         }
-
-    /**
-     * Movement method considering all possible obstacles.
-     * Second thing is animating the player.
-     * 
-     */
-    @Override
-    public void movement() {
-
-    }
     
     @Override
     public void render() {
@@ -70,15 +51,6 @@ public class Opponent extends Entity implements IPlayer {
     @Override
     public void setY(double y) {
         this.position.y = y;
-        this.sprite.setXY(position.x, position.y);
-    }
-    
-    public double getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(double yPosition) {
-        this.yPosition = yPosition;
         this.sprite.setXY(position.x, position.y);
     }
 }

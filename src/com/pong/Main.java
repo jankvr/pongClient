@@ -22,26 +22,29 @@ import javafx.stage.WindowEvent;
  *
  * @author User
  */
-public class Pong extends Application {
-    
-    private Scene scene;
-    
-    private Player player;
-    private Ball ball;
-    
+public class Main extends Application {
+
     private static final int WIDTH = 800; 
     private static final int HEIGHT = WIDTH/4*3;
     private static final double SCALE = 1;
     public static final int MAP_WIDTH = WIDTH;
     public static final int MAP_HEIGHT = HEIGHT;
-    private GraphicsContext gc;
-    private Sprite background;
+
+    private Scene scene;
     private Group root;
     private Client client;
-    private Score score;
+    private GraphicsContext gc;
     
+    private Sprite background;
     private Opponent opponent;
+    private Player player;
+    private Ball ball;
+    private Score score;
 
+    public Client getClient() {
+        return client;
+    }
+    
     public Player getPlayer() {
         return player;
     }
@@ -66,39 +69,29 @@ public class Pong extends Application {
     public void start(Stage stage) {
         
         client = new Client("127.0.0.1", 5000, this);
-                
-        
-        
-
         init(stage);
 
         stage.setTitle("PongClient");
         
-        long startNanoTime = System.nanoTime();
-        final long lastNanoTime = startNanoTime;        
+        // pocitani casu...
+        //long startNanoTime = System.nanoTime();
+        //final long lastNanoTime = startNanoTime;        
  
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
+                // pocitani casu
+                //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 
                 if (client.isStarted()) {
-
                     background.render(gc);
-
-                    player.render();
-                        
-                    opponent.render();
-
                     ball.render(gc);
-
+                    opponent.render();
+                    player.render();
                     player.movement();
-                    
-                    //if (elapsed > 0.1)
-                        client.processMessage(player.currentLocation());
-                    
-                        
+                    client.processMessage(player.currentLocation());      
                 }
+                // v else vetvi zobraz nejaky obrazek "cekejte prosim"
             }
         }.start();
         

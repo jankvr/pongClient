@@ -12,11 +12,11 @@ package com.pong;
  * @author User
  */
 public class CmdParser {
-    private final Pong game;
+    private final Main game;
     
     
-    public CmdParser(Pong game){
-        this.game=game;
+    public CmdParser(Main game){
+        this.game = game;
     }
     
     public void parse(String input){
@@ -26,31 +26,45 @@ public class CmdParser {
     
         if(tokens[0] != null)
             switch (tokens[0]) {
-                case "BALLPOSITION":
+                case "BALL":
                     double x = Double.parseDouble(tokens[1]);
                     double y = Double.parseDouble(tokens[2]);
-                    game.getBall().setxPosition(x);
-                    game.getBall().setyPosition(y);
+                    this.game.getBall().setPositionX(x);
+                    this.game.getBall().setPositionY(y);
                     break;
+                    
                 case "OPPONENTPOSITION":
-                    game.getOpponent().setY(Double.parseDouble(tokens[1]));
+                    this.game.getOpponent().setY(Double.parseDouble(tokens[1]));
                     break;
+                    
                 case "SCORE":
-                    game.getScore().setRec1(Integer.parseInt(tokens[1]));
-                    game.getScore().setRec2(Integer.parseInt(tokens[2]));
+                    this.game.getScore().setRec1(Integer.parseInt(tokens[1]));
+                    this.game.getScore().setRec2(Integer.parseInt(tokens[2]));
                     break;
+                    
                 case "ERROR":
-                    System.out.print("Server informuje o chybe: ");
-                    for(int i=1;i<tokens.length;i++){
+                    for(int i = 1; i < tokens.length; i++){
                         System.out.print(tokens[i]+" ");
                     }   System.out.println();
                     break;
+                    
+                case "LEFT":
+                    this.game.getPlayer().setX(Static.LEFT_POS);
+                    this.game.getOpponent().setX(Static.RIGHT_POS);
+                    break;
+                
+                case "RIGHT":
+                    this.game.getPlayer().setX(Static.RIGHT_POS);
+                    this.game.getOpponent().setX(Static.LEFT_POS);
+                    break;
+                    
+                case "START":
+                    this.game.getClient().setStarted(true);
+                    break;
+                    
                 default:
                     System.out.println("nesprávny reťazec poslaný na CmdParser " + input);
                     break;
-        }
-        
-        
+        } 
     }
-    
 }

@@ -8,7 +8,7 @@ package com.pong.input;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.input.KeyEvent;
-import com.pong.Pong;
+import com.pong.Main;
 
 /**
  *
@@ -19,9 +19,9 @@ public class Kb {
     
     private boolean up, down;
     private final Map<String, Boolean> map;
-    private final Pong gui;
+    private final Main gui;
     
-    public Kb(Pong gui) {
+    public Kb(Main gui) {
         this.gui = gui;
         map = new HashMap<>();
         map.put("UP", false);

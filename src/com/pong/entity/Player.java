@@ -8,7 +8,7 @@ package com.pong.entity;
 
 import com.pong.interfaces.IPlayer;
 import javafx.scene.canvas.GraphicsContext;
-import com.pong.Pong;
+import com.pong.Main;
 import com.pong.Sprite;
 import com.pong.input.Kb;
 
@@ -33,7 +33,7 @@ public class Player extends Entity implements IPlayer {
      * @param y     current position on y-axis
      * @param ps
      */
-    public Player(double x, double y, Pong ps) {
+    public Player(double x, double y, Main ps) {
         super(POD, x, y, ps);
         this.cantMoveUp = false;
         this.cantMoveDown = false;

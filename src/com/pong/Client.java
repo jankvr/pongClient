@@ -9,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ public class Client implements Runnable {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
-    private final Pong game;
+    private final Main game;
     private CmdParser parser;
     
     private boolean started = false;
@@ -29,19 +30,14 @@ public class Client implements Runnable {
     
     
     // Set up the screen
-    public Client(String host, int port, Pong game) {
+    public Client(String host, int port, Main game) {
 
         this.game = game;
         this.parser = new CmdParser(game);
         try {
             //initiate new connection
             this.socket = new Socket(host, port);
-            
-            
-            //message
-            System.out.println("Connection established");
-            
-            alive = true;
+            this.alive = true;
             
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
@@ -57,7 +53,6 @@ public class Client implements Runnable {
     
     public void sendQuitMessage() {
         try {
-            System.out.println("sending quit message " + outputStream);
             outputStream.writeUTF(Static.QUIT_CMD);
 
         } catch (IOException e) {
@@ -68,9 +63,16 @@ public class Client implements Runnable {
     public void processMessage(String message) {
         try {
             outputStream.writeUTF(message);
-        } catch (IOException ex) {
+            outputStream.flush();   
+        } 
+        catch (SocketException ex) {
+            // zaloguj chybu, posli quit msg a ukonci hru... nejak :)
+            this.sendQuitMessage();
+        } 
+        catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     @Override
@@ -82,20 +84,6 @@ public class Client implements Runnable {
                 parser.parse(message);
                 
                 System.out.println("Prijato: " + message);
-                
-                if (message.equals(Static.START_CMD)) {
-                    this.started = true;
-                }
-                
-                if (message.equals("LEFT")) {
-                    this.game.getPlayer().setX(Static.LEFT_POS);
-                    this.game.getOpponent().setX(Static.RIGHT_POS);
-                }
-                if (message.equals("RIGHT")) {
-                    this.game.getPlayer().setX(Static.RIGHT_POS);
-                    this.game.getOpponent().setX(Static.LEFT_POS);
-                }
-
             }
         } 
         catch (IOException e) {
@@ -112,5 +100,9 @@ public class Client implements Runnable {
     
     public boolean isStarted() {
         return started;
+    }
+    
+    public void setStarted(boolean started) {
+        this.started = started;
     }
 }

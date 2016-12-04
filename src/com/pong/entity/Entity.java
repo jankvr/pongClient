@@ -5,7 +5,7 @@
  */
 package com.pong.entity;
 
-import com.pong.Pong;
+import com.pong.Main;
 import com.pong.Sprite;
 
 /**
@@ -22,7 +22,7 @@ public class Entity {
 
     protected Sprite sprite;
     protected boolean cantMoveRight, cantMoveLeft, cantMoveUp, cantMoveDown;    
-    protected final Pong main;
+    protected final Main main;
     
     /**
      * Constructor for entity. 
@@ -34,9 +34,9 @@ public class Entity {
      * @param y sets entity position on y-axis
      * @param main
      */
-    public Entity(Sprite sprite, double x, double y, Pong main) {
-        this.windowWidth = Pong.MAP_WIDTH;
-        this.windowHeight = Pong.MAP_WIDTH;
+    public Entity(Sprite sprite, double x, double y, Main main) {
+        this.windowWidth = Main.MAP_WIDTH;
+        this.windowHeight = Main.MAP_WIDTH;
         this.main = main;
         this.sprite = sprite;
         this.sprite.setXY(x, y);
@@ -60,8 +60,7 @@ public class Entity {
     public EntityPosition getPosition() {
         return this.position;
     }
-   
-    
+
     public Sprite getSprite() {
         return this.sprite;
     }
