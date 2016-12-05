@@ -41,6 +41,17 @@ public class CmdParser {
                 case "SCORE":
                     this.game.getScore().setRec1(Integer.parseInt(tokens[1]));
                     this.game.getScore().setRec2(Integer.parseInt(tokens[2]));
+                    System.out.println("Dostal som skóre hurá "+tokens[1]+tokens[2]);
+                    break;
+                    
+                case "BALLPOSITIONANDSCORE":
+                    double xPos = Double.parseDouble(tokens[1]);
+                    double yPos = Double.parseDouble(tokens[2]);
+                    this.game.getBall().setPositionX(xPos);
+                    this.game.getBall().setPositionY(yPos);
+                    this.game.getScore().setRec1(Integer.parseInt(tokens[3]));
+                    this.game.getScore().setRec2(Integer.parseInt(tokens[4]));
+                    System.out.println("Dostal som skóre hurá "+tokens[3]+tokens[4]);
                     break;
                     
                 case "ERROR":

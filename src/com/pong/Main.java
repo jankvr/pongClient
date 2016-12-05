@@ -125,6 +125,7 @@ public class Main extends Application {
         opponent.setMapSize(MAP_WIDTH, MAP_HEIGHT);
         
         ball = new Ball(ballSprite, 400, 200, this);
+        score = new Score();
         
         root.getChildren().add(canvas);
     }
