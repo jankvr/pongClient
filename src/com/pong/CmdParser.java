@@ -60,6 +60,15 @@ public class CmdParser {
                     }   System.out.println();
                     break;
                     
+                case "LOGIN":
+                    if(tokens[1].equals("OK")){
+                        game.getClient().setLoggedIn("true");
+                        break;
+                    }
+                    else{
+                        game.getClient().setLoggedIn("false");
+                        break;
+                    }
                 case "LEFT":
                     this.game.getPlayer().setX(Static.LEFT_POS);
                     this.game.getOpponent().setX(Static.RIGHT_POS);

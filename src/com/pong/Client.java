@@ -28,6 +28,9 @@ public class Client implements Runnable {
     private boolean started = false;
     private boolean alive = false;
     
+    private String loggedIn="notYet";
+
+    
     
     // Set up the screen
     public Client(String host, int port, Main game) {
@@ -41,6 +44,7 @@ public class Client implements Runnable {
             
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
+            
             
             //start a new thread
             new Thread(this).start();
@@ -105,4 +109,49 @@ public class Client implements Runnable {
     public void setStarted(boolean started) {
         this.started = started;
     }
+    
+    public void logIn(String username, String password){
+        try {
+            this.outputStream.writeUTF("LOGIN "+username+" "+password);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public boolean isLogged(){
+        try {
+            String info = this.inputStream.readUTF();
+            System.out.println("dostal som terza info že "+info);
+            String[] tokens = info.split(" ");
+            if(tokens[0].equals("LOGIN")){
+                    if(tokens[1].equals("OK")){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+            }
+            else{
+                    System.out.println("What the hell, man?");
+                    return false;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    }
+
+
+
+    public String getLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(String loggedIn) {
+        this.loggedIn = loggedIn;
+    }    
+    
+    //čítanie protokolu LOGIN
 }

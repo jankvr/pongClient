@@ -15,6 +15,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import com.pong.entity.Ball;
 import com.pong.entity.Opponent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -71,7 +73,40 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         
+        
+        //tu bude nastavenie úvodnej obrazovky s prihlasovaním
+        
+        
+        
+        
         client = new Client("127.0.0.1", 5000, this);
+        
+        
+//        boolean loggedProperly = false;
+//        while(!loggedProperly){
+//            //prijať login údaje z obrazovky
+//            //client.logIn("bollocks","username");
+//            client.logIn("andrej", "hunter2");
+//            if(client.isLogged()){
+//                loggedProperly = true;
+//            }
+//        }
+        client.logIn("andrej", "hunter2");
+//        System.out.println(client.isLogged());
+        while(true){
+            
+            if(client.getLoggedIn().equals("true")){
+                System.out.println("I'm logged in now");
+                break;
+            }
+            else if (client.getLoggedIn().equals("false")){
+                System.out.println("Login was nos successful");
+                //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
+            }
+            else{
+                System.out.println("not yet");
+            }
+        }
         init(stage);
 
         stage.setTitle("PongClient");
