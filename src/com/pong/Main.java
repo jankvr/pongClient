@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import com.pong.entity.Ball;
 import com.pong.entity.Opponent;
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
 
 /**
@@ -84,6 +87,7 @@ public class Main extends Application {
                 //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
                 
                 if (client.isStarted()) {
+                    background.setDisplayedText(score.getRec1() +" : "+score.getRec2());
                     background.render(gc);
                     ball.render(gc);
                     opponent.render();
@@ -115,6 +119,10 @@ public class Main extends Application {
         
         gc = canvas.getGraphicsContext2D();
         gc.scale(SCALE, SCALE);
+        gc.setStroke(Color.WHITE);//skóre sa vypisuje bielou farbou
+        gc.setFont(new Font("Arial Bold",20));
+        //System.out.println(new Font(2).getFontNames());
+        gc.setTextAlign(TextAlignment.CENTER);
         background = new Sprite("images/background.png");
         Sprite ballSprite = new Sprite("images/ball.png");
         

@@ -8,6 +8,8 @@ package com.pong;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Class for making the image as a sprite
@@ -20,6 +22,7 @@ public final class Sprite {
     public String path;
     public int width;
     public int height;
+    public String displayedText = "";
 
     /**
      * Constructor. 
@@ -84,6 +87,17 @@ public final class Sprite {
     public Rectangle2D getBoundary() { // creating rectangle (for collision detection)
         return new Rectangle2D(x, y, this.img.getWidth(), this.img.getHeight());
     }
+
+    public String getDisplayedText() {
+        return displayedText;
+    }
+
+    public void setDisplayedText(String displayedText) {
+        this.displayedText = displayedText;
+    }
+    
+    
+    
     
     /**
      * Check if there is any collision with sprite s.
@@ -102,7 +116,11 @@ public final class Sprite {
      */
     public void render(GraphicsContext gc) {
         this.getBoundary();
+        
         gc.drawImage(this.img, x, y);
+        if(!displayedText.isEmpty()){
+            gc.strokeText(displayedText, 400, y+20);
+        }
     }
     
     /**
@@ -113,4 +131,6 @@ public final class Sprite {
     public String toString() {
         return "x: " + this.x + ", y: " + this.y;
     }
+    
+    
 }

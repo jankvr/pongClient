@@ -5,6 +5,8 @@
  */
 package com.pong;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  *
  * @author Jaroslav
