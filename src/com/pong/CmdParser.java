@@ -65,8 +65,12 @@ public class CmdParser {
                         game.getClient().setLoggedIn("true");
                         break;
                     }
-                    else{
+                    else if(tokens[1].equals("WRONG")){
                         game.getClient().setLoggedIn("false");
+                        break;
+                    }
+                    else if(tokens[1].equals("ALREADYCONNECTED")){
+                        game.getClient().setLoggedIn("alreadyConnected");
                         break;
                     }
                 case "LEFT":

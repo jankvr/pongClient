@@ -330,6 +330,11 @@ public class Main extends Application {
                             //client.logIn(userTextField.getText(), pwField.getText());
                             //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
                         }
+                        else if(client.getLoggedIn().equals("alreadyConnected")){
+                            actiontarget.setFill(Color.RED);
+                            actiontarget.setText("This user is already connected.");
+                            break;
+                        }
 //                        else{
 //                            System.out.println("Server hasn't responded yet, wait.");
 //                        }
