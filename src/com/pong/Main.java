@@ -18,8 +18,20 @@ import com.pong.entity.Opponent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
 
@@ -91,58 +103,73 @@ public class Main extends Application {
 //                loggedProperly = true;
 //            }
 //        }
-        client.logIn("andrej", "hunter2");
-//        System.out.println(client.isLogged());
-        while(true){
-            
-            if(client.getLoggedIn().equals("true")){
-                System.out.println("I'm logged in now");
-                break;
-            }
-            else if (client.getLoggedIn().equals("false")){
-                System.out.println("Login was nos successful");
-                //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
-            }
-            else{
-                System.out.println("not yet");
-            }
-        }
-        init(stage);
+        
+        initLogin(stage);
+        //stage.show();
+//        for(int i=1;i<100000;i++){
+//            System.out.println("a");
+//        }
+//        System.out.println("b");
 
-        stage.setTitle("PongClient");
-        
-        // pocitani casu...
-        //long startNanoTime = System.nanoTime();
-        //final long lastNanoTime = startNanoTime;        
- 
-        new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                // pocitani casu
-                //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
-                
-                if (client.isStarted()) {
-                    background.setDisplayedText(score.getRec1() +" : "+score.getRec2());
-                    background.render(gc);
-                    ball.render(gc);
-                    opponent.render();
-                    player.render();
-                    player.movement();
-                    client.processMessage(player.currentLocation());      
-                }
-                // v else vetvi zobraz nejaky obrazek "cekejte prosim"
-            }
-        }.start();
-        
-        stage.show();
-        
-        stage.setOnCloseRequest((WindowEvent e) -> {
-            if (client.isAlive()) {
-                client.sendQuitMessage();
-            }
-            Platform.exit();
-            System.exit(0);
-        });
+        //client.logIn("andrej", "hunter2");
+//        System.out.println(client.isLogged());
+//        while(true){
+//            
+//            if(client.getLoggedIn().equals("true")){
+//                System.out.println("I'm logged in now");
+//                break;
+//            }
+//            else if (client.getLoggedIn().equals("false")){
+//                System.out.println("Login was not successful");
+//                //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
+//            }
+//            else{
+//                System.out.println("Server hasn't responded yet, wait.");
+//            }
+//        }
+
+
+            
+
+
+//presunuté do metódy startGame(stage)
+//        stage.hide();
+//        init(stage);
+//        
+//        stage.setTitle("PongClient");
+//        
+//        // pocitani casu...
+//        //long startNanoTime = System.nanoTime();
+//        //final long lastNanoTime = startNanoTime;        
+// 
+//        new AnimationTimer() {
+//            @Override
+//            public void handle(long currentNanoTime) {
+//                // pocitani casu
+//                //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
+//                
+//                if (client.isStarted()) {
+//                    background.setDisplayedText(score.getRec1() +" : "+score.getRec2());
+//                    background.render(gc);
+//                    ball.render(gc);
+//                    opponent.render();
+//                    player.render();
+//                    player.movement();
+//                    client.processMessage(player.currentLocation());      
+//                }
+//                // v else vetvi zobraz nejaky obrazek "cekejte prosim"
+//            }
+//        }.start();
+//        
+//        stage.show();
+//        
+//        stage.setOnCloseRequest((WindowEvent e) -> {
+//            if (client.isAlive()) {
+//                client.sendQuitMessage();
+//            }
+//            Platform.exit();
+//            System.exit(0);
+//        });
     }
 
     private void init(Stage stage) {
@@ -189,5 +216,157 @@ public class Main extends Application {
     }
     
     
+    private void initLogin(Stage stage){
+//        //root = new Group();
+//        //scene = new Scene(root);
+//        //stage.setScene(scene);
+//        
+//        Canvas canvas = new Canvas(WIDTH * SCALE, HEIGHT * SCALE);
+//
+//        //Creating a GridPane container
+//        GridPane grid = new GridPane();
+//        scene = new Scene(grid, WIDTH * SCALE, HEIGHT * SCALE);
+//        stage.setScene(scene);
+//        grid.setPadding(new Insets(10, 10, 10, 10));
+//        grid.setVgap(5);
+//        grid.setHgap(5);
+//        //Defining the Name text field
+//        final TextField name = new TextField();
+//        name.setPromptText("Enter your first name.");
+//        name.setPrefColumnCount(10);
+//        name.getText();
+//        GridPane.setConstraints(name, 0, 0);
+//        grid.getChildren().add(name);
+//        //Defining the Last Name text field
+//        final TextField lastName = new TextField();
+//        lastName.setPromptText("Enter your last name.");
+//        GridPane.setConstraints(lastName, 0, 1);
+//        grid.getChildren().add(lastName);
+//        //Defining the Comment text field
+//        final TextField comment = new TextField();
+//        comment.setPrefColumnCount(15);
+//        comment.setPromptText("Enter your comment.");
+//        GridPane.setConstraints(comment, 0, 2);
+//        grid.getChildren().add(comment);
+//        //Defining the Submit button
+//        Button submit = new Button("Submit");
+//        GridPane.setConstraints(submit, 1, 0);
+//        grid.getChildren().add(submit);
+//        //Defining the Clear button
+//        Button clear = new Button("Clear");
+//        GridPane.setConstraints(clear, 1, 1);
+//        grid.getChildren().add(clear);
+
+        stage.show();
+        stage.setTitle("Login");
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+        Text scenetitle = new Text("Welcome to Pong. Please login");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        grid.add(scenetitle, 0, 0, 2, 1);
+
+        Label userName = new Label("User Name:");
+        grid.add(userName, 0, 1);
+
+        TextField userTextField = new TextField();
+        grid.add(userTextField, 1, 1);
+
+        Label pw = new Label("Password:");
+        grid.add(pw, 0, 2);
+
+        TextField pwField = new TextField();
+        grid.add(pwField, 1, 2);
+
+        Button btn = new Button("Sign in");
+        HBox hbBtn = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().add(btn);
+        grid.add(hbBtn, 1, 4);
+
+        final Text actiontarget = new Text();
+        grid.add(actiontarget, 1, 6);
+
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+//                actiontarget.setFill(Color.FIREBRICK);
+//                actiontarget.setText("Sign in button pressed");
+                if(userTextField.getText()!=null 
+                        && !userTextField.getText().isEmpty() 
+                        && pwField.getText()!=null 
+                        && !pwField.getText().isEmpty()){
+                    
+                    
+                    client.logIn(userTextField.getText(), pwField.getText());
+                                     
+                    while(true){
+                        if(client.getLoggedIn().equals("true")){
+                            System.out.println("I'm logged in now");
+                            startGame(stage);
+                            break;
+                        }
+                        else if (client.getLoggedIn().equals("false")){
+                            System.out.println("Login was not successful");
+                            //informovať klienta na okne že to bolo neúspešné
+                            break;
+                            //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
+                        }
+                        else{
+                            System.out.println("Server hasn't responded yet, wait.");
+                        }
+                    }
+                }
+            }
+        });
+
+        Scene scene = new Scene(grid, 300, 275);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    private void startGame(Stage stage){
+        stage.hide();
+        init(stage);
+        
+        stage.setTitle("PongClient");
+        
+        // pocitani casu...
+        //long startNanoTime = System.nanoTime();
+        //final long lastNanoTime = startNanoTime;        
+ 
+        new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                // pocitani casu
+                //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
+                
+                if (client.isStarted()) {
+                    background.setDisplayedText(score.getRec1() +" : "+score.getRec2());
+                    background.render(gc);
+                    ball.render(gc);
+                    opponent.render();
+                    player.render();
+                    player.movement();
+                    client.processMessage(player.currentLocation());      
+                }
+                // v else vetvi zobraz nejaky obrazek "cekejte prosim"
+            }
+        }.start();
+        
+        stage.show();
+        
+        stage.setOnCloseRequest((WindowEvent e) -> {
+            if (client.isAlive()) {
+                client.sendQuitMessage();
+            }
+            Platform.exit();
+            System.exit(0);
+        });
+    }
     
 }
