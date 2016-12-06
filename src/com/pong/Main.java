@@ -289,7 +289,9 @@ public class Main extends Application {
 
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
-
+        
+        //Text wrongLogin = new Text("You've entered a wrong username or password.");
+        
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -300,25 +302,37 @@ public class Main extends Application {
                         && !userTextField.getText().isEmpty() 
                         && pwField.getText()!=null 
                         && !pwField.getText().isEmpty()){
+//                    client.logIn(userTextField.getText(), pwField.getText());
+                    //boolean previousLogin
                     
-                    
-                    client.logIn(userTextField.getText(), pwField.getText());
-                                     
-                    while(true){
+                    boolean loggedInSuccessful = false;
+                    while(!loggedInSuccessful){
+                        client.logIn(userTextField.getText(), pwField.getText());
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        
                         if(client.getLoggedIn().equals("true")){
                             System.out.println("I'm logged in now");
                             startGame(stage);
-                            break;
+                            //break;
+                            loggedInSuccessful = true;
                         }
                         else if (client.getLoggedIn().equals("false")){
                             System.out.println("Login was not successful");
-                            //informovať klienta na okne že to bolo neúspešné
+                            actiontarget.setFill(Color.RED);
+                            actiontarget.setText("Wrong username or password");
                             break;
+                            //informovať klienta na okne že to bolo neúspešné
+                            //client.logIn(userTextField.getText(), pwField.getText());
                             //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
                         }
-                        else{
-                            System.out.println("Server hasn't responded yet, wait.");
-                        }
+//                        else{
+//                            System.out.println("Server hasn't responded yet, wait.");
+//                        }
                     }
                 }
             }
