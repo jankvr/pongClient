@@ -31,6 +31,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 
 /**
  *
@@ -57,6 +59,7 @@ public class Main extends Application {
     private Player player;
     private Ball ball;
     private Score score;
+    private Stage stage;
 
     public Client getClient() {
         return client;
@@ -257,6 +260,7 @@ public class Main extends Application {
 //        GridPane.setConstraints(clear, 1, 1);
 //        grid.getChildren().add(clear);
 
+        this.stage = stage;
         stage.show();
         stage.setTitle("Login");
         GridPane grid = new GridPane();
@@ -367,7 +371,12 @@ boolean loggedInSuccessful = false;
                     opponent.render();
                     player.render();
                     player.movement();
-                    client.processMessage(player.currentLocation());      
+                    client.processMessage(player.currentLocation());  
+                    
+                    if (!client.isAlive()) {
+                        this.stop();
+                        popUpWindow();
+                    }
                 }
                 // v else vetvi zobraz nejaky obrazek "cekejte prosim"
             }
@@ -386,4 +395,23 @@ boolean loggedInSuccessful = false;
         });
     }
     
+        
+    public void popUpWindow() {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(this.stage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Your opponent has left the game. Log in again to play another game."));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+        
+        dialog.setOnCloseRequest((WindowEvent e) -> {
+            if (client.isAlive()) {
+                client.sendQuitMessage();
+            }
+            Platform.exit();
+            System.exit(0);
+        });
+    }
 }

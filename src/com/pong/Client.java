@@ -51,7 +51,7 @@ public class Client implements Runnable {
             new Thread(this).start();
         }
         catch (Exception e) { 
-            LOG.warn("Quit the game, ");
+            LOG.warn("Quit the game, " + e.getMessage());
         }
         
     }
@@ -71,8 +71,8 @@ public class Client implements Runnable {
             outputStream.flush();   
         } 
         catch (SocketException ex) {
-            LOG.fatal(ex.getMessage());
-            this.sendQuitMessage();
+            LOG.warn("Socket error: " + ex.getMessage());
+            this.alive = false;
         } 
         catch (IOException ex) {
             LOG.fatal(ex.getMessage());
@@ -88,7 +88,6 @@ public class Client implements Runnable {
                 
                 parser.parse(message);
                 
-                System.out.println("Prijato: " + message);
             }
         } 
         catch (IOException e) {
@@ -153,6 +152,7 @@ public class Client implements Runnable {
     public void setLoggedIn(String loggedIn) {
         this.loggedIn = loggedIn;
     }    
+
     
     //čítanie protokolu LOGIN
 }
