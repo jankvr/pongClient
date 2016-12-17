@@ -10,8 +10,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+
 
 /**
  *
@@ -29,7 +29,8 @@ public class Client implements Runnable {
     private boolean alive = false;
     
     private String loggedIn="notYet";
-
+    private static final Logger LOG = Logger.getLogger(Client.class.getName());
+    
     
     
     // Set up the screen
@@ -50,7 +51,7 @@ public class Client implements Runnable {
             new Thread(this).start();
         }
         catch (Exception e) { 
-            System.out.println("Quit the game");
+            LOG.warn("Quit the game, ");
         }
         
     }
@@ -60,7 +61,7 @@ public class Client implements Runnable {
             outputStream.writeUTF(Static.QUIT_CMD);
 
         } catch (IOException e) {
-            System.out.println(e);
+            LOG.fatal(e.getMessage());
         }
     }
 
@@ -70,11 +71,11 @@ public class Client implements Runnable {
             outputStream.flush();   
         } 
         catch (SocketException ex) {
-            // zaloguj chybu, posli quit msg a ukonci hru... nejak :)
+            LOG.fatal(ex.getMessage());
             this.sendQuitMessage();
         } 
         catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.getMessage());
         }
         
     }
@@ -91,10 +92,10 @@ public class Client implements Runnable {
             }
         } 
         catch (IOException e) {
-            System.out.println(e.getMessage());
+            LOG.fatal(e.getMessage());
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOG.fatal(e.getMessage());
         }
     } 
     
@@ -114,7 +115,7 @@ public class Client implements Runnable {
         try {
             this.outputStream.writeUTF("LOGIN "+username+" "+password);
         } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.getMessage());
         }
     }
     
@@ -137,7 +138,7 @@ public class Client implements Runnable {
                     return false;
             }
         } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.fatal(ex.getMessage());
             return false;
         }
         

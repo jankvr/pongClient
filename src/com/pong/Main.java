@@ -15,16 +15,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import com.pong.entity.Ball;
 import com.pong.entity.Opponent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +43,9 @@ public class Main extends Application {
     public static final int MAP_WIDTH = WIDTH;
     public static final int MAP_HEIGHT = HEIGHT;
 
+    private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(Main.class.getName());
+    
+    
     private Scene scene;
     private Group root;
     private Client client;
@@ -292,59 +291,55 @@ public class Main extends Application {
         
         //Text wrongLogin = new Text("You've entered a wrong username or password.");
         
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent e) {
-//                actiontarget.setFill(Color.FIREBRICK);
+        btn.setOnAction((ActionEvent e) -> {
+            //                actiontarget.setFill(Color.FIREBRICK);
 //                actiontarget.setText("Sign in button pressed");
-                if(userTextField.getText()!=null 
-                        && !userTextField.getText().isEmpty() 
-                        && pwField.getText()!=null 
-                        && !pwField.getText().isEmpty()){
+if(userTextField.getText()!=null
+        && !userTextField.getText().isEmpty()
+        && pwField.getText()!=null
+        && !pwField.getText().isEmpty()){
 //                    client.logIn(userTextField.getText(), pwField.getText());
-                    //boolean previousLogin
-                    
-                    boolean loggedInSuccessful = false;
-                    while(!loggedInSuccessful){
-                        client.logIn(userTextField.getText(), pwField.getText());
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                        
-                        if(client.getLoggedIn().equals("true")){
-                            System.out.println("I'm logged in now");
-                            startGame(stage);
-                            //break;
-                            loggedInSuccessful = true;
-                        }
-                        else if (client.getLoggedIn().equals("false")){
-                            System.out.println("Login was not successful");
-                            actiontarget.setFill(Color.RED);
-                            actiontarget.setText("Wrong username or password");
-                            break;
-                            //informovať klienta na okne že to bolo neúspešné
-                            //client.logIn(userTextField.getText(), pwField.getText());
-                            //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
-                        }
-                        else if(client.getLoggedIn().equals("alreadyConnected")){
-                            actiontarget.setFill(Color.RED);
-                            actiontarget.setText("This user is already connected.");
-                            break;
-                        }
+//boolean previousLogin
+
+boolean loggedInSuccessful = false;
+    OUTER:
+    while (!loggedInSuccessful) {
+        client.logIn(userTextField.getText(), pwField.getText());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            LOG.fatal(ex.getMessage());
+        }   switch (client.getLoggedIn()) {
+            case "true":
+                LOG.info("I'm logged in now");
+                startGame(stage);
+                //break;
+                loggedInSuccessful = true;
+                break;
 //                        else{
 //                            System.out.println("Server hasn't responded yet, wait.");
 //                        }
-                    }
-                }
-            }
+            case "false":
+                LOG.info("Login was not successful");
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Wrong username or password");
+                break OUTER;
+                //informovať klienta na okne že to bolo neúspešné
+                //client.logIn(userTextField.getText(), pwField.getText());
+                //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
+            case "alreadyConnected":
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("This user is already connected.");
+                break OUTER;
+            default:
+                break;
+        }
+    }
+}
         });
 
-        Scene scene = new Scene(grid, 300, 275);
-        stage.setScene(scene);
+        Scene gridScene = new Scene(grid, 300, 275);
+        stage.setScene(gridScene);
         stage.show();
     }
     
