@@ -57,10 +57,18 @@ public class Entity {
         this.height = height;
     }
     
+    /**
+     * Returns position of entity 
+     * @return position of entity
+     */
     public EntityPosition getPosition() {
         return this.position;
     }
 
+    /**
+     * Returns sprite
+     * @return sprite
+     */
     public Sprite getSprite() {
         return this.sprite;
     }

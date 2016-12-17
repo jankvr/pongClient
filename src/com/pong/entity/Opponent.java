@@ -11,8 +11,8 @@ import com.pong.interfaces.IOpponent;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- *
- * @author User
+ * Class to hold information about opponent in the current game
+ * @author jankovar
  */
 public class Opponent extends Entity implements IOpponent {
 

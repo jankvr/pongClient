@@ -11,9 +11,9 @@ import com.pong.Sprite;
 
 /**
  *
- * Tahle trida by mela fungovat na strane serveru, protoze ji budeme na chvili uspavat, aby se koule po bodu nehybala.
+ * Táto trieda spravuje obraz lopty na klientskej strane.
  * 
- * @author User
+ * @author jankovar
  */
 public class Ball extends Entity {
     
@@ -29,23 +29,42 @@ public class Ball extends Entity {
         this.directionY = -1 * (Math.random());
     }
 
+    /**
+     * vracia pozíciu lopty na x-ovej osi
+     * @return pozícia lotpy na x-ovej osi
+     */
     public double getPositionX() {
         return this.position.x;
     }
 
+    /**
+     * nastavuje pozíciu lopty na x-ovej osi
+     * @param xPosition pozícia lopty na x-ovej osi
+     */
     public void setPositionX(double xPosition) {
         this.position.x = xPosition;
     }
 
+    /**
+     * vracia pozíciu lopty na y-ovej osi
+     * @return pozícia lotpy na y-ovej osi
+     */    
     public double getPositionY() {
         return this.position.y;
     }
 
+    /**
+     * nastavuje pozíciu lopty na y-ovej osi
+     * @param yPosition pozícia lopty na y-ovej osi
+     */    
     public void setPositionY(double yPosition) {
         this.position.y = yPosition;
     }
 
-    
+    /**
+     * spravuje vykreslenie lopty na hernom pláne
+     * @param gc grafický kontext na vykreslenie
+     */
     public void render(GraphicsContext gc) {
         this.sprite.setXY(position.x, position.y);
         this.sprite.render(gc);

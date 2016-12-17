@@ -10,8 +10,9 @@ import org.apache.log4j.Logger;
 
 
 /**
- *
- * @author User
+ * CmdParser vykonáva činnosti aplikácie, ktoré sa majú spúšťať príkazmi, ktoré
+ * dostala aplikácia na inpute
+ * @author Jan Kovář, Jaroslav Fedorčák
  */
 public class CmdParser {
     private final Main game;
@@ -22,6 +23,10 @@ public class CmdParser {
         this.game = game;
     }
     
+    /**
+     * Samotné parsovanie príkazov
+     * @param input text príkazu
+     */
     public void parse(String input){
         //rozdelenie stringu podľa medzier do poľa
         String delims = " ";

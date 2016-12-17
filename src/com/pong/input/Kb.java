@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 import com.pong.Main;
 
 /**
- *
+ * Keyboard, to receive user's interaction with the game.
  * @author jankovar
  */
 
@@ -37,16 +37,25 @@ public class Kb {
     private void keyReleased(KeyEvent e) {
         map.put(e.getCode().toString(), false);
     }
-    
+    /**
+     * updates informatio about pressed keys
+     */
     public void update() {
         up = map.get("UP");
         down = map.get("DOWN");
     }
-
+    /**
+     * Returns whether the up key is pressed 
+     * @return true if the up key is pressed
+     */
     public boolean isUp() {
         return up;
     }
 
+    /**
+     * Returns whether the down key is pressed 
+     * @return true if the down key is pressed
+     */
     public boolean isDown() {
         return down;
     }

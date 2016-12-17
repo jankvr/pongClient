@@ -35,8 +35,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 
 /**
- *
- * @author User
+ * Hlavná trieda aplikácie
+ * @author Jan Kovář, Jaroslav Fedorčák
  */
 public class Main extends Application {
 
@@ -61,26 +61,50 @@ public class Main extends Application {
     private Score score;
     private Stage stage;
 
+    /**
+     * 
+     * @return Odkaz na inštanciu klienta
+     */
     public Client getClient() {
         return client;
     }
     
+    /**
+     * 
+     * @return inštancia hráča
+     */
     public Player getPlayer() {
         return player;
     }
     
+    /**
+     * 
+     * @return inštancia oponenta
+     */
     public Opponent getOpponent() {
         return opponent;
     }
 
+    /**
+     * 
+     * @return inštancia lopty
+     */
     public Ball getBall() {
         return ball;
     }
 
+    /**
+     * 
+     * @return inštancia grafického kontextu spravujúceoh vykresľovanie
+     */
     public GraphicsContext getGc() {
         return gc;
     }
     
+    /**
+     * 
+     * @return scéna, na ktorej sa hraje
+     */
     public Scene getScene() {
         return this.scene;
     }
@@ -89,7 +113,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         
         
-        //tu bude nastavenie úvodnej obrazovky s prihlasovaním
+        
         
         
         
@@ -97,84 +121,15 @@ public class Main extends Application {
         client = new Client("127.0.0.1", 5000, this);
         
         
-//        boolean loggedProperly = false;
-//        while(!loggedProperly){
-//            //prijať login údaje z obrazovky
-//            //client.logIn("bollocks","username");
-//            client.logIn("andrej", "hunter2");
-//            if(client.isLogged()){
-//                loggedProperly = true;
-//            }
-//        }
-        
+
         initLogin(stage);
-        //stage.show();
-//        for(int i=1;i<100000;i++){
-//            System.out.println("a");
-//        }
-//        System.out.println("b");
-
-        //client.logIn("andrej", "hunter2");
-//        System.out.println(client.isLogged());
-//        while(true){
-//            
-//            if(client.getLoggedIn().equals("true")){
-//                System.out.println("I'm logged in now");
-//                break;
-//            }
-//            else if (client.getLoggedIn().equals("false")){
-//                System.out.println("Login was not successful");
-//                //toto bude treba vyriešiť, že sa opakuje zadávanie hesla
-//            }
-//            else{
-//                System.out.println("Server hasn't responded yet, wait.");
-//            }
-//        }
-
-
-            
-
-
-//presunuté do metódy startGame(stage)
-//        stage.hide();
-//        init(stage);
-//        
-//        stage.setTitle("PongClient");
-//        
-//        // pocitani casu...
-//        //long startNanoTime = System.nanoTime();
-//        //final long lastNanoTime = startNanoTime;        
-// 
-//        new AnimationTimer() {
-//            @Override
-//            public void handle(long currentNanoTime) {
-//                // pocitani casu
-//                //double elapsed = (currentNanoTime - lastNanoTime) / 1000000000.0;
-//                
-//                if (client.isStarted()) {
-//                    background.setDisplayedText(score.getRec1() +" : "+score.getRec2());
-//                    background.render(gc);
-//                    ball.render(gc);
-//                    opponent.render();
-//                    player.render();
-//                    player.movement();
-//                    client.processMessage(player.currentLocation());      
-//                }
-//                // v else vetvi zobraz nejaky obrazek "cekejte prosim"
-//            }
-//        }.start();
-//        
-//        stage.show();
-//        
-//        stage.setOnCloseRequest((WindowEvent e) -> {
-//            if (client.isAlive()) {
-//                client.sendQuitMessage();
-//            }
-//            Platform.exit();
-//            System.exit(0);
-//        });
+    
     }
 
+    /**
+     * inicializuje samotnú hru, metóda spustená až po prihlásení
+     * @param stage 
+     */
     private void init(Stage stage) {
         root = new Group();
         scene = new Scene(root);
@@ -210,56 +165,27 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * 
+     * @return skóre v rámci hry
+     */
     public Score getScore() {
         return score;
     }
 
+    /**
+     * setter na skóre
+     * @param score skóre v rámci hry
+     */
     public void setScore(Score score) {
         this.score = score;
     }
     
-    
+    /**
+     * inicializácia prihlasovacen obrazovky
+     * @param stage stage na vykreslenie loginu
+     */
     private void initLogin(Stage stage){
-//        //root = new Group();
-//        //scene = new Scene(root);
-//        //stage.setScene(scene);
-//        
-//        Canvas canvas = new Canvas(WIDTH * SCALE, HEIGHT * SCALE);
-//
-//        //Creating a GridPane container
-//        GridPane grid = new GridPane();
-//        scene = new Scene(grid, WIDTH * SCALE, HEIGHT * SCALE);
-//        stage.setScene(scene);
-//        grid.setPadding(new Insets(10, 10, 10, 10));
-//        grid.setVgap(5);
-//        grid.setHgap(5);
-//        //Defining the Name text field
-//        final TextField name = new TextField();
-//        name.setPromptText("Enter your first name.");
-//        name.setPrefColumnCount(10);
-//        name.getText();
-//        GridPane.setConstraints(name, 0, 0);
-//        grid.getChildren().add(name);
-//        //Defining the Last Name text field
-//        final TextField lastName = new TextField();
-//        lastName.setPromptText("Enter your last name.");
-//        GridPane.setConstraints(lastName, 0, 1);
-//        grid.getChildren().add(lastName);
-//        //Defining the Comment text field
-//        final TextField comment = new TextField();
-//        comment.setPrefColumnCount(15);
-//        comment.setPromptText("Enter your comment.");
-//        GridPane.setConstraints(comment, 0, 2);
-//        grid.getChildren().add(comment);
-//        //Defining the Submit button
-//        Button submit = new Button("Submit");
-//        GridPane.setConstraints(submit, 1, 0);
-//        grid.getChildren().add(submit);
-//        //Defining the Clear button
-//        Button clear = new Button("Clear");
-//        GridPane.setConstraints(clear, 1, 1);
-//        grid.getChildren().add(clear);
-
         this.stage = stage;
         stage.show();
         stage.setTitle("Login");
@@ -294,19 +220,14 @@ public class Main extends Application {
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
         
-        //Text wrongLogin = new Text("You've entered a wrong username or password.");
         
         btn.setOnAction((ActionEvent e) -> {
-            //                actiontarget.setFill(Color.FIREBRICK);
-//                actiontarget.setText("Sign in button pressed");
 if(userTextField.getText()!=null
         && !userTextField.getText().isEmpty()
         && pwField.getText()!=null
         && !pwField.getText().isEmpty()){
-//                    client.logIn(userTextField.getText(), pwField.getText());
-//boolean previousLogin
 
-boolean loggedInSuccessful = false;
+        boolean loggedInSuccessful = false;
     OUTER:
     while (!loggedInSuccessful) {
         client.logIn(userTextField.getText(), pwField.getText());
@@ -348,6 +269,10 @@ boolean loggedInSuccessful = false;
         stage.show();
     }
     
+    /**
+     * začína samotnú hru
+     * @param stage stage, na ktorom sa hraje hra
+     */
     private void startGame(Stage stage){
         stage.hide();
         init(stage);

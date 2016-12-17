@@ -6,8 +6,8 @@
 package com.pong;
 
 /**
- *
- * @author User
+ * Trieda na udržanie statických hodnôt ako názvy príkazov alebo rozmerov
+ * @author jankovar
  */
 public class Static {
     

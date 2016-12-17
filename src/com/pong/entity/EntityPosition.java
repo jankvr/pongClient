@@ -6,8 +6,8 @@
 package com.pong.entity;
 
 /**
- *
- * @author Honza
+ * Container for position of the entity
+ * @author jankovar
  */
 public class EntityPosition {
     
