@@ -30,6 +30,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -348,7 +349,7 @@ boolean loggedInSuccessful = false;
         init(stage);
         
         stage.setTitle("PongClient");
-        
+        gc.drawImage(new Image(Main.class.getResourceAsStream("images/standBy.png")), 0,0);
         // pocitani casu...
         //long startNanoTime = System.nanoTime();
         //final long lastNanoTime = startNanoTime;        
@@ -373,6 +374,8 @@ boolean loggedInSuccessful = false;
         }.start();
         
         stage.show();
+        
+        //tu hodit stand by obrazovku
         
         stage.setOnCloseRequest((WindowEvent e) -> {
             if (client.isAlive()) {
