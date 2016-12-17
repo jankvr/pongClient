@@ -565,3 +565,16 @@
 2016-12-17 01:36:23 FATAL [Thread-4] (Client.java:94) - 
 2016-12-17 01:36:23  WARN [JavaFX Application Thread] (Client.java:74) - Socket error: Software caused connection abort: socket write error
 2016-12-17 01:39:36  WARN [JavaFX Application Thread] (Client.java:54) - Quit the game, Connection refused: connect
+2016-12-17 02:55:46  INFO [JavaFX Application Thread] (Main.java:240) - I'm logged in now
+2016-12-17 02:55:57  INFO [JavaFX Application Thread] (Main.java:240) - I'm logged in now
+2016-12-17 02:56:11  WARN [Thread-4] (CmdParser.java:93) - nesprávny reťazec poslaný na CmdParser QUIT
+2016-12-17 02:56:11  WARN [Thread-4] (CmdParser.java:93) - nesprávny reťazec poslaný na CmdParser OPPONENTNNECTED
+2016-12-17 02:56:11 FATAL [Thread-4] (Client.java:107) - 
+2016-12-17 02:56:11  WARN [JavaFX Application Thread] (Client.java:87) - Socket error: Software caused connection abort: socket write error
+2016-12-17 02:57:06  INFO [JavaFX Application Thread] (Main.java:240) - I'm logged in now
+2016-12-17 02:57:15  INFO [JavaFX Application Thread] (Main.java:240) - I'm logged in now
+2016-12-17 02:57:18  WARN [Thread-4] (CmdParser.java:93) - nesprávny reťazec poslaný na CmdParser QUIT
+2016-12-17 02:57:18 FATAL [Thread-4] (Client.java:107) - 
+2016-12-17 02:57:18  WARN [Thread-4] (CmdParser.java:93) - nesprávny reťazec poslaný na CmdParser OPPONENTNNECTED
+2016-12-17 02:57:18 FATAL [Thread-4] (Client.java:107) - 
+2016-12-17 02:57:18  WARN [JavaFX Application Thread] (Client.java:87) - Socket error: Software caused connection abort: socket write error

@@ -326,7 +326,7 @@ if(userTextField.getText()!=null
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(this.stage);
         VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Your opponent has left the game. Log in again to play another game."));
+        dialogVbox.getChildren().add(new Text("Your opponent has left the game. \nLog in again to play another game."));
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();
