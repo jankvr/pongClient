@@ -5,8 +5,6 @@
  */
 package com.pong;
 
-import javafx.scene.canvas.GraphicsContext;
-
 /**
  * Trieda skóre spravuje informácie o stave hry medzi hráčmi
  * @author Jaroslav Fedorčák, Jan Kovář

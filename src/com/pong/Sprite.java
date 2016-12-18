@@ -100,17 +100,17 @@ public final class Sprite {
     
     
     /**
-     * Check if there is any collision with sprite s.
+     * Kontrola, jestli neni kolize se spritem v parametru.
      * 
-     * @param s checked sprite
-     * @return true if there is a collision
+     * @param s kontrolovany sprite
+     * @return true, jestlize doslo ke kolizi
      */
     public boolean intersects(Sprite s) { // checking if collision
         return this.getBoundary().intersects(s.getBoundary());
     }
     
     /**
-     * Rendering a sprite and setting up a boundary.
+     * Renderovani spritu a vytvareni hranicniho obrazku
      * 
      * @param gc graphics context
      */

@@ -14,7 +14,7 @@ import com.pong.input.Kb;
 
 /**
  *
- * Class extending entity provides all operations for a player (movement, etc.)
+ * Trida dedici z tridy Entity, ktera slouzi k realizaci pohybu hrace.
  * 
  * @author jankovar
  */
@@ -28,10 +28,10 @@ public class Player extends Entity implements IPlayer {
     private static final int SPEED = 5;
     
     /**
-     * Constructor.
-     * @param x     current position on x-axis
-     * @param y     current position on y-axis
-     * @param ps
+     * Konstruktor
+     * @param x pozice na ose X
+     * @param y pozice na ose Y
+     * @param ps odkaz na hlavni tridu klienta (Main)
      */
     public Player(double x, double y, Main ps) {
         super(POD, x, y, ps);
@@ -43,8 +43,7 @@ public class Player extends Entity implements IPlayer {
     }
     
     /**
-     * Method considering movement. 
-     * And setting a direction
+     * Metoda nastavujici pohyb padla nahoru.
      */
     private void moveUp() {
         if (this.position.y > 0) {
@@ -55,8 +54,7 @@ public class Player extends Entity implements IPlayer {
     }
     
     /**
-     * Method considering movement. 
-     * And setting a direction
+     * Metoda nastavujici pohyb padla dolu.
      */
     private void moveDown() {
         if ((this.position.y + this.sprite.getImage().getHeight()) < super.height) {
@@ -66,8 +64,7 @@ public class Player extends Entity implements IPlayer {
     }
 
     /**
-     * Movement method considering all possible obstacles.
-     * Second thing is animating the player.
+     * Kontrola toho, co je zmacknuto, pripadna realizace pohybu.
      * 
      */
     @Override
@@ -83,22 +80,37 @@ public class Player extends Entity implements IPlayer {
         }
     }
     
+    /**
+     * Renderovani spritu.
+     */
     @Override
     public void render() {
         this.sprite.render(gc);
     }
     
+    /**
+     * Vytvoreni zpravy urcene k poslani na server
+     * @return  zprava o pozici
+     */
     @Override
     public String currentLocation() {
         return "OPPONENTPOSITION " + this.position.x + " " + this.position.y;
     }
     
+    /**
+     * Nastaveni pozice na ose X
+     * @param x pozice na ose X
+     */
     @Override
     public void setX(double x) {
         this.position.x = x;
         this.sprite.setXY(position.x, position.y);
     }
     
+    /**
+     * Nastaveni pozice na ose Y
+     * @param y pozice na ose Y
+     */
     @Override
     public void setY(double y) {
         this.position.y = y;

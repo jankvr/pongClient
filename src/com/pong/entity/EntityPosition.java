@@ -6,7 +6,7 @@
 package com.pong.entity;
 
 /**
- * Container for position of the entity
+ * Kontejner pro pozici entity
  * @author jankovar
  */
 public class EntityPosition {
@@ -16,6 +16,13 @@ public class EntityPosition {
     public final int width;
     public final int height;
     
+    /**
+     * Konstruktor kontejneru.
+     * @param x pozice X
+     * @param y pozice Y
+     * @param width sirka pole
+     * @param height vyska pole
+     */
     public EntityPosition(double x, double y, int width, int height) {
         this.x = x;
         this.y = y;

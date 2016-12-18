@@ -25,13 +25,11 @@ public class Entity {
     protected final Main main;
     
     /**
-     * Constructor for entity. 
-     * Width and height means size of the window.
-     * Direction is set to 1, the default direction.
+     * Konstruktor
      * 
      * @param sprite
-     * @param x sets entity position on x-axis
-     * @param y sets entity position on y-axis
+     * @param x pozice na X
+     * @param y pozice na Y
      * @param main
      */
     public Entity(Sprite sprite, double x, double y, Main main) {
@@ -47,10 +45,10 @@ public class Entity {
     }
     
     /**
-     * Setting up a map size.
+     * Nastavuje vysku a sirku mapy
      * 
-     * @param width width of map
-     * @param height height of map
+     * @param width sirka mapy
+     * @param height vyska mapy
      */
     public void setMapSize(int width, int height) {
         this.width = width;
@@ -58,15 +56,15 @@ public class Entity {
     }
     
     /**
-     * Returns position of entity 
-     * @return position of entity
+     * Vraci pozici entity
+     * @return pozice entity
      */
     public EntityPosition getPosition() {
         return this.position;
     }
 
     /**
-     * Returns sprite
+     * Vraci sprite entity.
      * @return sprite
      */
     public Sprite getSprite() {

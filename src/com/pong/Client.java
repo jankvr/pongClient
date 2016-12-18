@@ -93,6 +93,9 @@ public class Client implements Runnable {
         
     }
     
+    /**
+     * Cyklus prijimani zprav.
+     */
     @Override
     public void run() {
         try {

@@ -320,7 +320,9 @@ if(userTextField.getText()!=null
         });
     }
     
-        
+    /**
+     * Pop up okno po oponentove unahlenem ukonceni hry.
+     */
     public void popUpWindow() {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);

@@ -30,38 +30,46 @@ public class Kb {
         this.setKeyBoard();
     }
 
+    /**
+     * Nastavi true ke konkretnimu kodu tlacitka (true = tlacitko zmacknuto)
+     * @param e keyevent
+     */
     private void keyPressed(KeyEvent e) {
         map.put(e.getCode().toString(), true);
     }
     
+    /**
+     * Nastavi false ke konkretnimu kodu tlacitka (false = tlacitku neni zmacknuto)
+     * @param e 
+     */
     private void keyReleased(KeyEvent e) {
         map.put(e.getCode().toString(), false);
     }
     /**
-     * updates informatio about pressed keys
+     * Update (ne)zmacknutych tlacitek
      */
     public void update() {
         up = map.get("UP");
         down = map.get("DOWN");
     }
     /**
-     * Returns whether the up key is pressed 
-     * @return true if the up key is pressed
+     * Vraci, jestli je zmacknuto tlacitko UP (sipka nahoru)
+     * @return true, jestli je zmacknuto
      */
     public boolean isUp() {
         return up;
     }
 
     /**
-     * Returns whether the down key is pressed 
-     * @return true if the down key is pressed
+     * Vraci, jestli je zmacknuto tlacitko DOWN (sipka dolu)
+     * @return true, jestli je zmacknuto
      */
     public boolean isDown() {
         return down;
     }
     
     /**
-     * Setting up a keyboard actions.
+     * Nastaveni akce na scene.
      */
     private void setKeyBoard() {
         this.gui.getScene().setOnKeyPressed((KeyEvent e) -> {

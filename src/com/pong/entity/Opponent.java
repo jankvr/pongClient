@@ -11,7 +11,7 @@ import com.pong.interfaces.IOpponent;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Class to hold information about opponent in the current game
+ * Trida slouzici k drzeni informaci o tom, kde je protihrac, vykreslovani jeho padla.
  * @author jankovar
  */
 public class Opponent extends Entity implements IOpponent {
@@ -20,10 +20,10 @@ public class Opponent extends Entity implements IOpponent {
     private final GraphicsContext gc;
     
     /**
-     * Constructor.
-     * @param x     current position on x-axis
-     * @param y     current position on y-axis
-     * @param game
+     * Konstruktor.
+     * @param x     pozice na X
+     * @param y     pozice na Y
+     * @param game  odkaz na hlavni tridu klienta (main)
      */
     public Opponent(double x, double y, Main game) {
         super(POD, x, y, game);
@@ -32,11 +32,18 @@ public class Opponent extends Entity implements IOpponent {
         this.gc = game.getGc();
         }
     
+    /**
+     * Renderovani spritu protihrace.
+     */
     @Override
     public void render() {
         this.sprite.render(gc);
     }
     
+    /**
+     * Zprava o pozici protihracova padla.
+     * @return zprava
+     */
     @Override
     public String currentLocation() {
         return "PADDLEPOSITION " + this.position.y;
